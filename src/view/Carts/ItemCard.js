@@ -21,15 +21,15 @@ function Itemcard(props) {
           ></button>
           <div className="col-12 col-md-6">
             <div className="row">
-              {file.map((e) => (
+              {file?file.map((e) => (
                 <div className="col-4">
                   <img
-                    className="img"
+                    className="img-fluid"
                     src={`${Url}/${e.filePath}`}
                     alt={e.fileName}
                   />
                 </div>
-              ))}
+              )):"surat mavjud emas"}
             </div>
           </div>
           <div className="col-12 col-md-6 orta">

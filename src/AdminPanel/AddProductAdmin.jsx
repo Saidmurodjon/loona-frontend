@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { multipleFilesUpload } from './data/api'
+import { multipleFilesUpload } from "./data/api";
 import NavbarAdmin from "./NavbarAdmin";
 import ProductAdmin from "./ProductAdmin";
 function AddProductAdmin() {
-
   const [multipleFiles, setMultipleFiles] = useState("");
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("Мэбэл")
+  const [category, setCategory] = useState("Мэбэл");
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
@@ -25,16 +24,19 @@ function AddProductAdmin() {
     formData.append("type", type);
     formData.append("title", title);
     for (let i = 0; i < multipleFiles.length; i++) {
-      formData.append('files', multipleFiles[i]);
+      formData.append("files", multipleFiles[i]);
     }
-
-    await multipleFilesUpload(formData);
+    // console.log(multipleFiles);
+    if (multipleFiles.length > 0) {
+      await multipleFilesUpload(formData);
+    } else {
+      alert("Surat yuklang");
+    }
   };
 
   const Send = async (e) => {
-    e.preventDefault()
-    
-  }
+    e.preventDefault();
+  };
 
   return (
     <>
@@ -53,7 +55,9 @@ function AddProductAdmin() {
                     <div className="controls">
                       <div className="row">
                         <div className="col-md-6">
-                          <div className="form-group formAdminAdd"> <label className='labelADminProd' >Name</label>
+                          <div className="form-group formAdminAdd">
+                            {" "}
+                            <label className="labelADminProd">Name</label>
                             <input
                               type="text"
                               name="name"
@@ -65,7 +69,9 @@ function AddProductAdmin() {
                           </div>
                         </div>
                         <div className="col-md-6">
-                          <div className="form-group formAdminAdd"> <label className='labelADminProd' >Type</label>
+                          <div className="form-group formAdminAdd">
+                            {" "}
+                            <label className="labelADminProd">Type</label>
                             <input
                               type="text"
                               name="Type"
@@ -79,7 +85,9 @@ function AddProductAdmin() {
                       </div>
                       <div className="row">
                         <div className="col-md-6">
-                          <div className="form-group formAdminAdd"> <label className='labelADminProd' >Price</label>
+                          <div className="form-group formAdminAdd">
+                            {" "}
+                            <label className="labelADminProd">Price</label>
                             <input
                               type="text"
                               name="pice"
@@ -87,52 +95,61 @@ function AddProductAdmin() {
                               placeholder="Pirce"
                               required="required"
                               onChange={(e) => setPrice(e.target.value)}
-
-                            /> </div>
+                            />{" "}
+                          </div>
                         </div>
                         <div className="col-md-6">
-                          <div className="form-group formAdminAdd"> <label className='labelADminProd' >Category</label>
+                          <div className="form-group formAdminAdd">
+                            {" "}
+                            <label className="labelADminProd">Category</label>
                             <select
                               onChange={(e) => setCategory(e.target.value)}
                               name="category"
                               className="form-control inputsAddPRoduct"
-                              required="required" >
-                              <option value='Мэбэл'>Мэбэл</option>
-                              <option value='Люстра'>Люстра</option>
-                              <option value='Дэкор'>Дэкор</option>
-                              <option value='Элэмэнтыдэкора'>Элэмэнты дэкора</option>
+                              required="required"
+                            >
+                              <option value="Мэбэл">Мэбэл</option>
+                              <option value="Люстра">Люстра</option>
+                              <option value="Дэкор">Дэкор</option>
+                              <option value="Элэмэнтыдэкора">
+                                Элэмэнты дэкора
+                              </option>
                             </select>
-
                           </div>
                         </div>
                       </div>
                       <div className="row">
                         <div className="col-md-12">
-                          <div className="form-group formAdminAddTExtarea"> <label className='labelADminProd'>Title</label>
+                          <div className="form-group formAdminAddTExtarea">
+                            {" "}
+                            <label className="labelADminProd">Title</label>
                             <textarea
                               name="title"
                               className="form-control inputsAddPRoduct"
                               placeholder="Title"
-                              rows="4" 
+                              rows="4"
                               required="required"
                               onChange={(e) => setTitle(e.target.value)}
-                            ></textarea> </div>
+                            ></textarea>{" "}
+                          </div>
                         </div>
                         <div className="col-md-12">
                           <input
                             type="file"
                             onChange={(e) => MultipleFileChange(e)}
-                            className='form-control inputImageAdmin inputsAddPRoduct'
+                            className="form-control inputImageAdmin inputsAddPRoduct"
                             multiple
                             required="required"
                           />
                         </div>
                         <div className="col-md-12">
-                          <input type="submit"
+                          <input
+                            type="submit"
                             className="btn btn-success btn-send pt-2 btn-block submitAddAdmin"
                             onClick={() => UploadMultipleFiles()}
                             value="Submit"
-                          /> </div>
+                          />{" "}
+                        </div>
                       </div>
                     </div>
                   </form>

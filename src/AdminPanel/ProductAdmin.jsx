@@ -17,7 +17,6 @@ function ProductAdmin(props) {
 
   const deleteProd = (_id) => {
     const url = `${Url}/product/${_id}`;
-    console.log(url);
     if (window.confirm("O'chirishni xoxlaysizmi?")) {
       axios.delete(url);
     }

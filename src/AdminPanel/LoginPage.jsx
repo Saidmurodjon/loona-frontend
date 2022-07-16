@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import Url from "../config";
+// import axios from "axios";
+// import Url from "../config";
 import "./Admin.css";
 function LoginPage() {
   const [mon, setMon] = useState({
@@ -16,7 +16,7 @@ function LoginPage() {
     // let res = await axios.post(`${Url}/admin`, mon);
     // console.log(res);
 
-    if (mon.login === "admin" && mon.password === "1020") {
+    if (mon.login === "porto" && mon.password === "porto2022@uz") {
       navigate("/addProduct");
     } else {
       alert("Login yoki Parol xato");

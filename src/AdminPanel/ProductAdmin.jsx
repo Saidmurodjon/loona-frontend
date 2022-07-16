@@ -4,23 +4,23 @@ import { Link } from "react-router-dom";
 import Url from "../config";
 function ProductAdmin(props) {
   const [prod, setProd] = useState([]);
-
+  const [show, setShow] = useState(false);
   useEffect(() => {
     async function demo() {
       const res = await axios.get(`${Url}/product`);
       setProd(res.data);
-
     }
     demo();
-  }, []);
+  }, [show]);
 
-
-  const deleteProd = (_id) => {
+  const deleteProd = async (_id) => {
     const url = `${Url}/product/${_id}`;
-    if (window.confirm("O'chirishni xoxlaysizmi?")) {
-      axios.delete(url);
+    const result = await window.confirm("O'chirilsinmi?");
+    if (result) {
+      await axios.delete(url);
+      setShow(!show);
+      return;
     }
-    window.location.reload(false);
   };
   return (
     <>
@@ -42,27 +42,24 @@ function ProductAdmin(props) {
                   <h4 className="daniAdminProduct">
                     <b>{elem.price}</b>UZS
                   </h4>
-                  <p className="daniAdminProduct">
-
-                  </p>
+                  <p className="daniAdminProduct"></p>
                   <Link
                     onClick={() => {
-                        localStorage.setItem('product', JSON.stringify(elem))
-                      }
-                    }
-                    to={"/editProduct/" + elem._id}>
-                    <button
-                      className="btn btn-primary btnAdminProduct w-100 ">
+                      localStorage.setItem("product", JSON.stringify(elem));
+                    }}
+                    to={"/editProduct/" + elem._id}
+                  >
+                    <button className="btn btn-primary btnAdminProduct w-100 ">
                       Edit
                     </button>
                   </Link>
 
                   <button
                     onClick={() => deleteProd(elem._id)}
-                    className="btn btn-danger btnAdminProduct w-100">
+                    className="btn btn-danger btnAdminProduct w-100"
+                  >
                     Delte
                   </button>
-
                 </div>
               </div>
             );

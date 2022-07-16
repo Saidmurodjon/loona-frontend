@@ -1,2 +1,2 @@
-const Url = "https://test-nodejs-app-backend.herokuapp.com";
+const Url = "https://porto-uz.herokuapp.com";
 export default Url;

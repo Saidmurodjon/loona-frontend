@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { multipleFilesUpload } from "./data/api";
 import NavbarAdmin from "./NavbarAdmin";
 import ProductAdmin from "./ProductAdmin";
+const config = {
+  headers: { "content-type": "multipart/form-data" },
+};
 function AddProductAdmin() {
   const [multipleFiles, setMultipleFiles] = useState("");
   const [name, setName] = useState("");
@@ -28,9 +31,10 @@ function AddProductAdmin() {
     }
     // console.log(multipleFiles);
     if (multipleFiles.length > 0) {
-      await multipleFilesUpload(formData);
+      multipleFilesUpload(formData);
     } else {
       alert("Surat yuklang");
+      // console.log(formData);
     }
   };
 

@@ -20,9 +20,12 @@ function EditAdmin() {
     setMultipleFiles(e.target.files);
     setMultipleProgress(0);
   };
-  const multipleFilesUpload2 = async (data, options) => {
+  const multipleFilesUpload2 = async (data) => {
     try {
-      await axios.put(apiUrl, data, options);
+      const config = {
+        headers: { "content-type": "multipart/form-data" },
+      };
+      await axios.put(apiUrl, data, config);
       navigator("/addProduct");
     } catch (error) {
       console.log(error);
@@ -122,6 +125,7 @@ function EditAdmin() {
                               name="category"
                               className="form-control inputsAddPRoduct"
                               required="required"
+                              value={category}
                             >
                               <option value="Мэбэл">Мэбэл</option>
                               <option value="Люстра">Люстра</option>

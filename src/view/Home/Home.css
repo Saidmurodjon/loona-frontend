@@ -1,0 +1,190 @@
+
+/* chap kreslo */
+.img-top {
+    text-align: end;
+    padding: 18% 11% 5% 0;
+    border: 1px solid #f7f1f1;
+    background-position-x: center
+}
+
+.img-top h1, .img-top h2 .img-top p {
+    font-weight: 700;
+}
+
+.img-top .top-link {
+    text-decoration: none;
+    border: 2px solid #c4b5b5;
+    padding: 2% 5%;
+    color: #606DA6;
+    font-weight: 700;
+}
+
+.img-top .top-link:hover {
+    background-color: #f2f2f2;
+    border-color: rgba(0,0,0,.06)
+    
+}
+
+.left-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 270px;
+    background-position: left;
+    color: white;
+    width: 45%;
+    text-align: center;
+    margin-right: 2%;
+}
+
+.right-img {
+    position: relative;
+    height: 270px;
+    width: 53%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white; 
+    transition: all 0.5s;
+}
+
+.text-right-img {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    left: 13%;
+   
+}
+
+.hover-img:hover::before {
+    content: '';
+    background-color: #808080;
+    z-index: 1;
+    opacity: 0.1;
+    width: 100%;
+    left: 0;
+    position: absolute;
+    height: 100%;
+    top: 0;
+}
+
+
+
+
+/* o'ng kreslo */
+
+.right-big {
+    background-position: right;
+
+}
+
+.left-big-text {
+    margin-left: 10%;
+    text-align: center;
+}
+
+.left-big-text h3 {
+    background-color: #212529;
+    color: white;
+    display: inline-block;
+    padding: 5px 20px;
+    margin: 4% 0;
+    transform: rotate(-10deg);
+}
+
+.left-big-text span {
+    transform: rotate(-100deg);
+    display: inline-block;
+    margin-top: 8%;
+}
+
+.offf{
+    display: inline;
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 5%;
+}
+
+.brown-p {
+    color: #ED7E63;
+  
+    font-weight: 600;
+    line-height: 1.2em;
+    letter-spacing: .1px;
+    margin-top: 10%;
+    display: inline-block;
+    font-size: 20px;
+  
+}
+
+
+.top-link {
+    text-decoration: none;
+    border: 2px solid #c4b5b5;
+    padding: 2% 5%;
+    color: #606DA6;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.top-link:hover {
+    background-color: #f2f2f2;
+    border-color: rgba(0,0,0,.06)
+}
+
+/* tect 4  */
+
+.text-icons {
+    font-size: 30px;
+}
+
+.text {
+    font-size: 15px;
+    margin-left: 15px;
+    margin-top: 7px;
+    line-height: 3px;
+
+}
+
+.left-big-text2 h3 {
+    display: inline-block;
+    padding: 5px 20px;
+    transform: rotate(-10deg);
+}
+
+.left-big-text2 span {
+    transform: rotate(-100deg);
+    display: inline-block;
+    margin-top: 5%;
+}
+
+.offf2{
+    display: inline;
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 5%;
+}
+
+.one-text {
+    background-color: white;
+    color: black;
+}
+
+.one-text2 {
+    color: white;
+    background-color: #606da6;
+}
+
+.rek {
+    background-repeat: no-repeat;
+    background-position: inherit;
+    background-size: cover;
+    color: white;
+    padding: 5% 5% 3% 5%;
+    margin-bottom: 5%;
+}
+
+.teps h1{
+    font-size: 45px;
+
+}
+

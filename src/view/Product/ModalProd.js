@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Tavsif.css";
 import ItemCard from "../Carts/ItemCard";
 import Url from "../../config";

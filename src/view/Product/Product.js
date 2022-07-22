@@ -17,8 +17,8 @@ function Product() {
   }, []);
 
   const Filter = (a) => {
-    let nat = baz.filter((item) => {
-      if (item.category == a) {
+    const nat = baz.filter((item) => {
+      if (item.category === a) {
         return true;
       }
     });

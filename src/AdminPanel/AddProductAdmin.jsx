@@ -4,9 +4,9 @@ import NavbarAdmin from "./NavbarAdmin";
 import ProductAdmin from "./ProductAdmin";
 import axios from "axios";
 import Url from "../config";
-const config = {
-  headers: { "content-type": "multipart/form-data" },
-};
+// const config = {
+//   headers: { "content-type": "multipart/form-data" },
+// };
 function AddProductAdmin() {
   const [multipleFiles, setMultipleFiles] = useState("");
   const [name, setName] = useState("");

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { multipleFilesUpload } from "./data/api";
 import NavbarAdmin from "./NavbarAdmin";
 import ProductAdmin from "./ProductAdmin";
+import axios from "axios";
+import Url from "../config";
 const config = {
   headers: { "content-type": "multipart/form-data" },
 };
@@ -13,7 +15,12 @@ function AddProductAdmin() {
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
   const [files, setMultipleProgress] = useState(0);
-
+  const [prod, setProd] = useState([]);
+  const [search, setSearch] = useState([]);
+  const [next, setNext] = useState({
+    quantity: 1,
+    step: 50,
+  });
   const MultipleFileChange = (e) => {
     setMultipleFiles(e.target.files);
     setMultipleProgress(0);
@@ -37,14 +44,47 @@ function AddProductAdmin() {
       // console.log(formData);
     }
   };
-
+  useEffect(() => {
+    const Fun = async () => {
+      try {
+        const res = await axios.post(`${Url}/product/next`, next);
+        if (res.status === 200) {
+          setProd([...prod, ...res.data]);
+          setNext({ ...next, quantity: next.quantity + 1 });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    Fun();
+  }, [next]);
+  function Search(text) {
+    // console.log(text);
+    const newService = prod.filter(
+      (elem) =>
+        elem.name.toLowerCase().includes(text.toLowerCase()) ||
+        elem.category.toLowerCase().includes(text.toLowerCase()) ||
+        elem.type.toLowerCase().includes(text.toLowerCase())
+    );
+    setSearch(newService);
+  }
+  const deleteProd = async (_id) => {
+    const url = `${Url}/product/${_id}`;
+    const result = await window.confirm("O'chirilsinmi?");
+    if (result) {
+      await axios.delete(url);
+      setProd([]);
+      setSearch([]);
+      setNext({ ...next, quantity: 1 });
+    }
+  };
   const Send = async (e) => {
     e.preventDefault();
   };
 
   return (
     <>
-      <NavbarAdmin />
+      <NavbarAdmin search={Search} />
 
       <div className="container">
         <div className=" text-center mt-5 ">
@@ -112,12 +152,43 @@ function AddProductAdmin() {
                               className="form-control inputsAddPRoduct"
                               required="required"
                             >
-                              <option value="Мэбэл">Мэбэл</option>
-                              <option value="Люстра">Люстра</option>
-                              <option value="Дэкор">Дэкор</option>
-                              <option value="Элэмэнтыдэкора">
-                                Элэмэнты дэкора
-                              </option>
+                              <option value="">...</option>
+
+                              <optgroup label="Мэбэл">
+                                <option value="Диваны">Диваны</option>
+                                <option value="Кресло">Кресло</option>
+                                <option value="Журнальный стол">
+                                  Журнальный стол
+                                </option>
+                                <option value="Комод">Комод</option>
+                                <option value="Пуфы">Пуфы</option>
+                                <option value="Стеллажи">Стеллажи</option>
+                              </optgroup>
+                              <optgroup label="Светильники">
+                                <option value="Подвесной светильник">
+                                  Подвесной светильник
+                                </option>
+                                <option value="Потолочный светильник">
+                                  Потолочный светильник
+                                </option>
+                                <option value="Торшеры">Торшеры</option>
+                                <option value="Настольные лампы">
+                                  Настольные лампы
+                                </option>
+                                <option value="Бра">Бра</option>
+                              </optgroup>
+                              <optgroup label="Декор">
+                                <option value="Картины">Картины</option>
+                                <option value="УФ-печать">УФ-печать</option>
+                                <option value="Обои">Обои</option>
+                                <option value="Панно из акрила">
+                                  Панно из акрила
+                                </option>
+                                <option value="Панно из металла">
+                                  Панно из металла
+                                </option>
+                                <option value="Скульптура">Скульптура</option>
+                              </optgroup>
                             </select>
                           </div>
                         </div>
@@ -163,8 +234,11 @@ function AddProductAdmin() {
           </div>
         </div>
       </div>
-
-      <ProductAdmin />
+      {search.length > 0 ? (
+        <ProductAdmin del={deleteProd} prod={search} />
+      ) : (
+        <ProductAdmin del={deleteProd} prod={prod} />
+      )}
     </>
   );
 }

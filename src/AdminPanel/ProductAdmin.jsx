@@ -1,27 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { Link } from "react-router-dom";
 import Url from "../config";
-function ProductAdmin(props) {
-  const [prod, setProd] = useState([]);
-  const [show, setShow] = useState(false);
-  useEffect(() => {
-    async function demo() {
-      const res = await axios.get(`${Url}/product`);
-      setProd(res.data);
-    }
-    demo();
-  }, [show]);
-
-  const deleteProd = async (_id) => {
-    const url = `${Url}/product/${_id}`;
-    const result = await window.confirm("O'chirilsinmi?");
-    if (result) {
-      await axios.delete(url);
-      setShow(!show);
-      return;
-    }
-  };
+import { Link } from "react-router-dom";
+function ProductAdmin({ prod = [], del }) {
+  // const [show, setShow] = useState(false);
   return (
     <>
       <div className="container ProductAdmin">
@@ -37,11 +17,17 @@ function ProductAdmin(props) {
                     />
                   </div>
                   <h4 className="daniAdminProduct">
-                    <b>{elem.name}</b>
+                    <b className="float-start">Имя:</b>&nbsp;{elem.name}
                   </h4>
                   <h4 className="daniAdminProduct">
-                    <b>{elem.price}</b>UZS
+                    <b className="float-start">Тип:</b> {elem.type}
                   </h4>
+                  <h4 className="daniAdminProduct">
+                    <b className="float-start">Цена:</b>&nbsp;{new Intl.NumberFormat().format(elem.price)} UZS
+                  </h4>
+                  <h4 className="daniAdminProduct">
+                    <b className="float-start">Категория:</b>&nbsp;{elem.category}                   </h4>
+                  
                   <p className="daniAdminProduct"></p>
                   <Link
                     onClick={() => {
@@ -50,15 +36,15 @@ function ProductAdmin(props) {
                     to={"/editProduct/" + elem._id}
                   >
                     <button className="btn btn-primary btnAdminProduct w-100 ">
-                      Edit
+                      Обновить
                     </button>
                   </Link>
 
                   <button
-                    onClick={() => deleteProd(elem._id)}
+                    onClick={() => del(elem._id)}
                     className="btn btn-danger btnAdminProduct w-100"
                   >
-                    Delte
+                    Удалить
                   </button>
                 </div>
               </div>

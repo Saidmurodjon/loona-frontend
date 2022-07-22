@@ -125,14 +125,44 @@ function EditAdmin() {
                               name="category"
                               className="form-control inputsAddPRoduct"
                               required="required"
-                              value={category}
                             >
-                              <option value="Мэбэл">Мэбэл</option>
-                              <option value="Люстра">Люстра</option>
-                              <option value="Дэкор">Дэкор</option>
-                              <option value="Элэмэнтыдэкора">
-                                Элэмэнты дэкора
-                              </option>
+                              <option value="">...</option>
+
+                              <optgroup label="Мэбэл">
+                                <option value="Диваны">Диваны</option>
+                                <option value="Кресло">Кресло</option>
+                                <option value="Журнальный стол">
+                                  Журнальный стол
+                                </option>
+                                <option value="Комод">Комод</option>
+                                <option value="Пуфы">Пуфы</option>
+                                <option value="Стеллажи">Стеллажи</option>
+                              </optgroup>
+                              <optgroup label="Светильники">
+                                <option value="Подвесной светильник">
+                                  Подвесной светильник
+                                </option>
+                                <option value="Потолочный светильник">
+                                  Потолочный светильник
+                                </option>
+                                <option value="Торшеры">Торшеры</option>
+                                <option value="Настольные лампы">
+                                  Настольные лампы
+                                </option>
+                                <option value="Бра">Бра</option>
+                              </optgroup>
+                              <optgroup label="Декор">
+                                <option value="Картины">Картины</option>
+                                <option value="УФ-печать">УФ-печать</option>
+                                <option value="Обои">Обои</option>
+                                <option value="Панно из акрила">
+                                  Панно из акрила
+                                </option>
+                                <option value="Панно из металла">
+                                  Панно из металла
+                                </option>
+                                <option value="Скульптура">Скульптура</option>
+                              </optgroup>
                             </select>
                           </div>
                         </div>

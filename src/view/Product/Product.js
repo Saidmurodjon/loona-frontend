@@ -28,7 +28,7 @@ function Product() {
   const Full = () => {
     setBaza((items) => [...baz]);
   };
-
+  // public_html/porto
   const [tempdata, setTempData] = useState([]);
   const [model, setModel] = useState(false);
   const View = (files, name, price, title, prod) => {
@@ -51,19 +51,75 @@ function Product() {
             </button>
           </div>
           <div className="col-md-2">
-            <button className="butFilter" onClick={() => Filter("Мэбэл")}>
+            {/* <button className="butFilter" onClick={() => Filter("Мэбэл")}>
               Мэбэл
-            </button>
+            </button> */}
+            <form action="">
+              <select
+                onChange={(e) => Filter(e.target.value)}
+                name="category"
+                className="form-control bg-dark text-white text-center"
+                required="required"
+              >
+                <optgroup label="Мэбэл">
+                  {/* <option defaultValue="Мэбэл">Мэбэл</option> */}
+                  <option value="Диваны">Диваны</option>
+                  <option value="Кресло">Кресло</option>
+                  <option value="Журнальный стол">Журнальный стол</option>
+                  <option value="Комод">Комод</option>
+                  <option value="Пуфы">Пуфы</option>
+                  <option value="Стеллажи">Стеллажи</option>
+                </optgroup>
+              </select>
+            </form>
           </div>
           <div className="col-md-2">
-            <button className="butFilter" onClick={() => Filter("Люстра")}>
+            {/* <button className="butFilter" onClick={() => Filter("Люстра")}>
               Люстра
-            </button>
+            </button> */}
+            <form action="">
+              <select
+                onChange={(e) => Filter(e.target.value)}
+                name="category"
+                className="form-control bg-dark text-white text-center"
+                required="required"
+              >
+                <optgroup label="Светильники">
+                  <option value="Подвесной светильник">
+                    Подвесной светильник
+                  </option>
+                  <option value="Потолочный светильник">
+                    Потолочный светильник
+                  </option>
+                  <option value="Торшеры">Торшеры</option>
+                  <option value="Настольные лампы">Настольные лампы</option>
+                  <option value="Бра">Бра</option>
+                </optgroup>
+              </select>
+            </form>
           </div>
           <div className="col-md-2">
-            <button className="butFilter" onClick={() => Filter("Дэкор")}>
+            {/* <button className="butFilter" onClick={() => Filter("Дэкор")}>
               Дэкор
-            </button>
+            </button> */}
+
+            <form action="">
+              <select
+                onChange={(e) => Filter(e.target.value)}
+                name="category"
+                className="form-control bg-dark text-white text-center"
+                required="required"
+              >
+                <optgroup label="Декор">
+                  <option value="Картины">Картины</option>
+                  <option value="УФ-печать">УФ-печать</option>
+                  <option value="Обои">Обои</option>
+                  <option value="Панно из акрила">Панно из акрила</option>
+                  <option value="Панно из металла">Панно из металла</option>
+                  <option value="Скульптура">Скульптура</option>
+                </optgroup>
+              </select>
+            </form>
           </div>
           <div className="col-md-2">
             <button

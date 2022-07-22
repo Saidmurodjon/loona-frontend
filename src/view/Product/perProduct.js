@@ -56,7 +56,7 @@ function Tavsif() {
                 </div>
                 <div className='col-md-7 col-12 tavsifi'>
                     <h1>{saved.name}</h1>
-                    <h2>{saved.price}.00 UZS</h2>
+                    <h2>{new Intl.NumberFormat().format(saved.price)}.00 UZS</h2>
                     <p>
                         {saved.title}
                     </p>
@@ -82,7 +82,7 @@ function Tavsif() {
                                 </div>
                                 <div className='title'> <h6 className='kartaH6'>{item.category}</h6></div>
                                 <div className='prname'>{item.name}</div>
-                                <h5>UZS {item.price}.00</h5>
+                                <h5>UZS {new Intl.NumberFormat().format(item.price)}.00</h5>
                             </div>
                         </div>
                     )

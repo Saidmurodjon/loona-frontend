@@ -206,7 +206,7 @@ function Home() {
                                                 </div>
                                                 <div className='title'> <h6 className='kartaH6'>{item.category}</h6></div>
                                                 <div className='prname'>{item.name}</div>
-                                                <h5>UZS {item.price}.00</h5>
+                                                <h5>UZS {new Intl.NumberFormat().format(item.price)}.00</h5>
                                             </div>
                                         </div>
                                     )

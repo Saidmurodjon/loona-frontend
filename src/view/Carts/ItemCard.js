@@ -34,7 +34,7 @@ function Itemcard(props) {
           </div>
           <div className="col-12 col-md-6 orta">
             <h1>{props.name}</h1>
-            <h2>{props.price}.00 UZS</h2>
+            <h2>{new Intl.NumberFormat().format(props.price)}.00 UZS</h2>
             <p>{props.title}</p>
             <h6>
               <span className="sku-wrapper"> CATEGORIES:</span> OFFICE, OUTDOOR

@@ -3,9 +3,9 @@ import "./Card.css";
 import axios from "axios";
 import { useCart } from "react-use-cart";
 import Url from "../../config";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 function Card() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const {
     items,
     isEmpty,
@@ -30,7 +30,7 @@ function Card() {
   };
   const Alerttab = async (a) => {
     a.preventDefault();
-    if (send.name == "" || send.tel == "" || send.adress == "") {
+    if (send.name && send.tel && send.adress) {
       console.log(send);
       alert("Malumotlarni toliq kiriting");
     } else {
@@ -38,9 +38,9 @@ function Card() {
       await axios
         .post(`${Url}/order`, send)
         .then((res) => {
-          alert("Ma'lumotlar qabul qilindi")
-          emptyCart()
-          navigate('/')
+          alert("Ma'lumotlar qabul qilindi");
+          emptyCart();
+          navigate("/");
         })
         .catch((err) => {
           console.log(err);
@@ -53,7 +53,6 @@ function Card() {
     return (
       <div className="mt-5">
         <h5 className="d-inline m-5 ">Karta bosh :</h5>
-
       </div>
     );
   return (
@@ -70,8 +69,6 @@ function Card() {
                   <div className="row">
                     {items.map((item, index) => {
                       return (
-
-
                         <div className="col-md-12" key={index}>
                           <div className="items">
                             <div className="product">
@@ -80,6 +77,7 @@ function Card() {
                                   <img
                                     className="card-img-top img-fluid"
                                     src={`${Url}/${item.files[0].filePath}`}
+                                    alt=" "
                                   />
                                 </div>
                                 <div className="col-md-8">
@@ -88,10 +86,10 @@ function Card() {
                                       <div className="col-md-5 product-name">
                                         <div className="product-name">
                                           <h5 className="card-title">
-                                          Имя :
-                                              <span className="value">
-                                                {item.name}
-                                              </span>
+                                            Имя :
+                                            <span className="value">
+                                              {item.name}
+                                            </span>
                                           </h5>
                                           <div className="product-info">
                                             <div>
@@ -101,7 +99,7 @@ function Card() {
                                               </span>
                                             </div>
                                             <div>
-                                            Категория :
+                                              Категория :
                                               <span className="value">
                                                 {item.category}
                                               </span>
@@ -153,8 +151,6 @@ function Card() {
                             </div>
                           </div>
                         </div>
-
-
                       );
                     })}
                   </div>
@@ -177,62 +173,59 @@ function Card() {
                   </div>
                 </div>
                 <form onSubmit={Alerttab} className="my-5">
-                  
-                    <div className="royxat1 p-2">
-                      <div>
-                        <h5 >Заполните список</h5>
+                  <div className="royxat1 p-2">
+                    <div>
+                      <h5>Заполните список</h5>
+                    </div>
+                    <div className="modal-body">
+                      <div className="form-group my-3">
+                        <label htmlFor="exampleInputEmail1">Имя</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="Введите имя"
+                          onChange={handlerInput}
+                          value={send.name}
+                          name="name"
+                        />
                       </div>
-                      <div className="modal-body">
-                        <div className="form-group my-3">
-                          <label htmlFor="exampleInputEmail1">Имя</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
-                            placeholder="Введите имя"
-                            onChange={handlerInput}
-                            value={send.name}
-                            name="name"
-                          />
-                        </div>
-                        <div className="form-group my-3">
-                          <label htmlFor="exampleInputEmail1">Номер телефона</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
-                            placeholder="Введите номер телефона"
-                            onChange={handlerInput}
-                            value={send.tel}
-                            name="tel"
-                          />
-                        </div>
-                        <div className="form-group my-3">
-                          <label htmlFor="exampleInputEmail1">Адресс</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="exampleInputEmail1"
-                            aria-describedby="emailHelp"
-                            placeholder="Введите адресс"
-                            onChange={handlerInput}
-                            value={send.adress}
-                            name="adress"
-                          />
-                        </div>
+                      <div className="form-group my-3">
+                        <label htmlFor="exampleInputEmail1">
+                          Номер телефона
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="Введите номер телефона"
+                          onChange={handlerInput}
+                          value={send.tel}
+                          name="tel"
+                        />
                       </div>
-                      <div className="modal-footer">
-                        <button
-                          type="submit"
-                          className="btn  btnbuy btn-lg "
-                        >
-                          Заказать
-                        </button>
+                      <div className="form-group my-3">
+                        <label htmlFor="exampleInputEmail1">Адресс</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="exampleInputEmail1"
+                          aria-describedby="emailHelp"
+                          placeholder="Введите адресс"
+                          onChange={handlerInput}
+                          value={send.adress}
+                          name="adress"
+                        />
                       </div>
                     </div>
-                 
+                    <div className="modal-footer">
+                      <button type="submit" className="btn  btnbuy btn-lg ">
+                        Заказать
+                      </button>
+                    </div>
+                  </div>
                 </form>
               </div>
             </div>

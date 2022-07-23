@@ -14,6 +14,7 @@ function ProductAdmin({ prod = [], del }) {
                     <img
                       className="imgProductAdmin"
                       src={`${Url}/${elem.files[0].filePath}`}
+                      alt=" "
                     />
                   </div>
                   <h4 className="daniAdminProduct">
@@ -23,11 +24,14 @@ function ProductAdmin({ prod = [], del }) {
                     <b className="float-start">Тип:</b> {elem.type}
                   </h4>
                   <h4 className="daniAdminProduct">
-                    <b className="float-start">Цена:</b>&nbsp;{new Intl.NumberFormat().format(elem.price)} UZS
+                    <b className="float-start">Цена:</b>&nbsp;
+                    {new Intl.NumberFormat().format(elem.price)} UZS
                   </h4>
                   <h4 className="daniAdminProduct">
-                    <b className="float-start">Категория:</b>&nbsp;{elem.category}                   </h4>
-                  
+                    <b className="float-start">Категория:</b>&nbsp;
+                    {elem.category}{" "}
+                  </h4>
+
                   <p className="daniAdminProduct"></p>
                   <Link
                     onClick={() => {

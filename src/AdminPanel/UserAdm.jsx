@@ -70,6 +70,7 @@ function UserAdm() {
                             <img
                               className="imgProdOrder"
                               src={Url + "/" + mey.files[0].filePath}
+                              alt=" "
                             />
                           </div>
                         );

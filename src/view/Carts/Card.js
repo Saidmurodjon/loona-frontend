@@ -142,7 +142,13 @@ function Card() {
                                         </button>
                                       </div>
                                       <div className="col-md-3 price">
-                                        <span> {item.price} UZS </span>
+                                        <span>
+                                          {" "}
+                                          {new Intl.NumberFormat().format(
+                                            item.price
+                                          )}{" "}
+                                          UZS{" "}
+                                        </span>
                                       </div>
                                     </div>
                                   </div>
@@ -169,7 +175,10 @@ function Card() {
                   </div>
                   <div className="summary-item">
                     <span className="text2"> Общее сумма </span>
-                    <span className="price"> {cartTotal} UZS </span>
+                    <span className="price">
+                      {" "}
+                      {new Intl.NumberFormat().format(cartTotal)} UZS{" "}
+                    </span>
                   </div>
                 </div>
                 <form onSubmit={Alerttab} className="my-5">

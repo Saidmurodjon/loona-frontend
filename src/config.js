@@ -1,2 +1,2 @@
-const Url = "https://porto-uz.herokuapp.com";
+const Url = "https://seal-app-73cnf.ondigitalocean.app";
 export default Url;

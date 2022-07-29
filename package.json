@@ -16,6 +16,7 @@
     "react-scripts": "5.0.0",
     "react-use-cart": "^1.13.0",
     "react-yandex-maps": "^4.6.0",
+    "reactstrap": "^9.1.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

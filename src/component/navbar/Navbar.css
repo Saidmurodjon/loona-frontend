@@ -8,7 +8,11 @@
     color: #222529;
     padding: 45px 3% 45px 3%;
 }
-
+.nav-select{
+    font-family: Poppins, sans-serif;
+    font-size: 13px;
+    font-weight: 900;
+}
 .menu ul {
     margin-top: 45px;
     padding-inline-start: 0;
@@ -85,7 +89,9 @@
     left: 5%;
     z-index: 1;
 }
-
+.nav-img{
+    width: 150px;
+}
 
 
 

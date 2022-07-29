@@ -4,9 +4,14 @@ import ModalProd from "./ModalProd";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Url from "../../config";
-function Product() {
+function Product(text) {
   const [baza, setBaza] = useState([]);
   const [baz, setBaz] = useState([]);
+  // Token
+  const pro = sessionStorage.getItem("pro-text");
+  console.log(pro);
+  useEffect(() => {
+  }, [pro]);
   useEffect(() => {
     async function Demo() {
       const res = await axios.get(`${Url}/product`);
@@ -24,7 +29,7 @@ function Product() {
     });
     setBaza(nat);
   };
-
+  console.log(pro);
   const Full = () => {
     setBaza((items) => [...baz]);
   };

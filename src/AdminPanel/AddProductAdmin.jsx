@@ -5,9 +5,44 @@ import ProductAdmin from "./ProductAdmin";
 import axios from "axios";
 import Url from "../config";
 function AddProductAdmin() {
+  let cat = [
+    {
+      category: "Мебель",
+      subCategory: [
+        "Диваны",
+        "Кресло",
+        "Журнальный стол",
+        "Комод",
+        "Пуфы",
+        "Стеллажи",
+      ],
+    },
+    {
+      category: "Светильники",
+      subCategory: [
+        "Подвесной светильник",
+        "Подвесная люстра",
+        "Потолочный светильник",
+        "Торшеры",
+        "Настольные лампы",
+        "Бра",
+      ],
+    },
+    {
+      category: "Декор",
+      subCategory: [
+        "Картины",
+        "УФ-печать",
+        "Обои",
+        "Панно из акрила",
+        "Панно из металла",
+        "Скульптура",
+      ],
+    },
+  ];
   const [multipleFiles, setMultipleFiles] = useState("");
   const [name, setName] = useState("");
-  const [category, setCategory] = useState("Мэбэл");
+  const [category, setCategory] = useState("Мебель");
   const [price, setPrice] = useState("");
   const [type, setType] = useState("");
   const [title, setTitle] = useState("");
@@ -18,6 +53,8 @@ function AddProductAdmin() {
     quantity: 1,
     step: 50,
   });
+  const [subCategory, setSubCategory] = useState("");
+  const [sub, setSub] = useState([]);
   const MultipleFileChange = (e) => {
     setMultipleFiles(e.target.files);
     setMultipleProgress(0);
@@ -27,6 +64,7 @@ function AddProductAdmin() {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", category);
+    formData.append("subCategory", subCategory);
     formData.append("price", price);
     formData.append("type", type);
     formData.append("title", title);
@@ -41,6 +79,17 @@ function AddProductAdmin() {
       // console.log(formData);
     }
   };
+  useEffect(() => {
+    function Foo() {
+      for (let i of cat) {
+        if (i.category == category) {
+          setSub(i.subCategory);
+          console.log(category);
+        }
+      }
+    }
+    Foo();
+  }, [category]);
   useEffect(() => {
     const Fun = async () => {
       try {
@@ -75,6 +124,7 @@ function AddProductAdmin() {
       setNext({ ...next, quantity: 1 });
     }
   };
+
   const Send = async (e) => {
     e.preventDefault();
   };
@@ -112,15 +162,21 @@ function AddProductAdmin() {
                         <div className="col-md-6">
                           <div className="form-group formAdminAdd">
                             {" "}
-                            <label className="labelADminProd">Type</label>
-                            <input
-                              type="text"
-                              name="Type"
+                            <label className="labelADminProd">Category</label>
+                            <select
+                              onChange={(e) => setCategory(e.target.value)}
+                              name="category"
                               className="form-control inputsAddPRoduct"
-                              placeholder="Type"
                               required="required"
-                              onChange={(e) => setType(e.target.value)}
-                            />
+                            >
+                              {cat.map((item, index) => {
+                                return (
+                                  <option value={item.category} key={index}>
+                                    {item.category}
+                                  </option>
+                                );
+                              })}
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -136,56 +192,28 @@ function AddProductAdmin() {
                               placeholder="Pirce"
                               required="required"
                               onChange={(e) => setPrice(e.target.value)}
-                            />{" "}
+                            />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group formAdminAdd">
                             {" "}
-                            <label className="labelADminProd">Category</label>
+                            <label className="labelADminProd">
+                              SubCategory
+                            </label>
                             <select
-                              onChange={(e) => setCategory(e.target.value)}
+                              onChange={(e) => setSubCategory(e.target.value)}
                               name="category"
                               className="form-control inputsAddPRoduct"
                               required="required"
                             >
-                              <option value="">...</option>
-
-                              <optgroup label="Мэбэл">
-                                <option value="Диваны">Диваны</option>
-                                <option value="Кресло">Кресло</option>
-                                <option value="Журнальный стол">
-                                  Журнальный стол
-                                </option>
-                                <option value="Комод">Комод</option>
-                                <option value="Пуфы">Пуфы</option>
-                                <option value="Стеллажи">Стеллажи</option>
-                              </optgroup>
-                              <optgroup label="Светильники">
-                                <option value="Подвесной светильник">
-                                  Подвесной светильник
-                                </option>
-                                <option value="Потолочный светильник">
-                                  Потолочный светильник
-                                </option>
-                                <option value="Торшеры">Торшеры</option>
-                                <option value="Настольные лампы">
-                                  Настольные лампы
-                                </option>
-                                <option value="Бра">Бра</option>
-                              </optgroup>
-                              <optgroup label="Декор">
-                                <option value="Картины">Картины</option>
-                                <option value="УФ-печать">УФ-печать</option>
-                                <option value="Обои">Обои</option>
-                                <option value="Панно из акрила">
-                                  Панно из акрила
-                                </option>
-                                <option value="Панно из металла">
-                                  Панно из металла
-                                </option>
-                                <option value="Скульптура">Скульптура</option>
-                              </optgroup>
+                              {sub.map((item, index) => {
+                                return (
+                                  <option value={item} key={index}>
+                                    {item}
+                                  </option>
+                                );
+                              })}
                             </select>
                           </div>
                         </div>

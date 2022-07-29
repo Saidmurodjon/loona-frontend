@@ -13,7 +13,7 @@ function Home() {
             let res = await axios(`${Url}/product`)
             setProd(res.data.slice(0,8))
         }
-        Demo()
+        Demo()  
     }, [])
 
     

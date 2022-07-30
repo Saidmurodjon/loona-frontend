@@ -235,4 +235,7 @@ cursor: pointer;
         top: 0;
         left: -20px;
     }
+    .nav-logo{
+      width: 120px;
+    }
 }

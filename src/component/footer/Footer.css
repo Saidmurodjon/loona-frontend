@@ -13,3 +13,8 @@
     padding-left: 15%;
     color: #606da6;
 }
+@media only screen and (max-width: 760px) {
+    .fot-img2 {
+        width: 120px;
+    }
+}

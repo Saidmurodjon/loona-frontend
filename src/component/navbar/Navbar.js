@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useCart } from "react-use-cart";
 import { useNavigate } from "react-router-dom";
-import photo from '../../assets/logo.png'
+import photo from "../../assets/logo.png";
 import "./Nav.css";
 
 const Navbar = () => {
@@ -29,7 +29,7 @@ const Navbar = () => {
       navigate("/about");
     } else {
       if (text.length > 0) {
-        navigate("/product",{state:{text:text}});
+        navigate("/product", { state: { text: text } });
       }
     }
   }
@@ -57,14 +57,14 @@ const Navbar = () => {
         </div>
         <div className="logo col-md-3 text-center">
           <img
-          onClick={()=>navigate('/')}
+            onClick={() => navigate("/")}
             className="pt-3 nav-logo pointer"
             src={photo}
             alt="logo"
           />
         </div>
         <div className="admin col-md-4 d-flex justify-content-end">
-          <div className="admin-icon" onClick={() => console.log("e")}>
+          <div className="admin-icon">
             <Link className="text-dark" to="/login">
               <HiOutlineUser />
             </Link>
@@ -89,9 +89,9 @@ const Navbar = () => {
             }}
           >
             <ul>
-              <Link className="nav-items2 mt-5 text-dark cancel" to="/">
+              <div className="nav-items2 mt-5 text-dark cancel">
                 <ImCancelCircle onClick={() => Toggle()} />
-              </Link>
+              </div>
             </ul>
             <ul className="menus bg-white d-block w-75">
               {menuItems.map((menu, index) => {

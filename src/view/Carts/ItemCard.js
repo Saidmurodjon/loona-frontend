@@ -8,7 +8,6 @@ function Itemcard(props) {
   const { file } = props;
   const { addItem } = useCart();
   const [count, setCount] = useState(1);
-  console.log(typeof props.file);
   //   file.map((e) => console.log(e));
   return (
     <div className="container-fluid modaliddin">

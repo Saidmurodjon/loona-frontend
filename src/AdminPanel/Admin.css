@@ -216,6 +216,9 @@
 .btnOrderAdmin:hover {
   background: rgb(148, 7, 7);
 }
+.admin-menu{
+  margin-top: 1%;
+}
 
 /* /* CONACT CSS ADMIN */
 .contacAdmin {
@@ -276,5 +279,8 @@
     margin-left: 17%;
     width: 50%;
     margin-top: 11%;
+  }
+  .admin-menu{
+    display: block;
   }
 }

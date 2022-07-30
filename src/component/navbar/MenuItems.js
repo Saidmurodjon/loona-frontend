@@ -38,15 +38,16 @@ const [text,setText]=useState("")
     >
       {items.submenu ? (
         <>
-          <button
-            type="button"
+          <p
+            // type="button"
             aria-haspopup="menu"
+            className="mt-2 ms-2 pointer"
             aria-expanded={dropdown ? "true" : "false"}
             onClick={() => {setDropdown((prev) => !prev)}}
           >
-            {items.title}
+            <b>{items.title}</b>
             {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}
-          </button>
+          </p>
           <Dropdown
             depthLevel={depthLevel}
             submenus={items.submenu}
@@ -55,7 +56,7 @@ const [text,setText]=useState("")
           />
         </>
       ) : (
-        <p className="m-2" onClick={()=>navfunc(items.title)}>{items.title}</p>
+        <p className="m-2 mt-2 pointer" onClick={()=>navfunc(items.title)}><b>{items.title}</b></p>
       )}
     </li>
   );

@@ -23,7 +23,6 @@ function Home() {
   const View = (files, name, price, title,prod) => {
     let tempData = [files, name, price, title , prod ]
     setTempData(item => [...tempData])
-    console.log(tempData)
     return setModel(true)
 
 

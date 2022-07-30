@@ -30,11 +30,9 @@ function Card() {
   };
   const Alerttab = async (a) => {
     a.preventDefault();
-    if (send.name && send.tel && send.adress) {
-      console.log(send);
+    if (!send.name || !send.tel ||!send.adress) {
       alert("Malumotlarni toliq kiriting");
     } else {
-      console.log(send);
       await axios
         .post(`${Url}/order`, send)
         .then((res) => {

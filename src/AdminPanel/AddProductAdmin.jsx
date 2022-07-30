@@ -3,8 +3,12 @@ import { multipleFilesUpload } from "./data/api";
 import NavbarAdmin from "./NavbarAdmin";
 import ProductAdmin from "./ProductAdmin";
 import axios from "axios";
+import {useLocation } from "react-router-dom";
+
 import Url from "../config";
 function AddProductAdmin() {
+  const location = useLocation();
+
   let cat = [
     {
       category: "Мебель",
@@ -52,6 +56,7 @@ function AddProductAdmin() {
   const [next, setNext] = useState({
     quantity: 1,
     step: 50,
+    category: "Все",
   });
   const [subCategory, setSubCategory] = useState("");
   const [sub, setSub] = useState([]);
@@ -63,10 +68,10 @@ function AddProductAdmin() {
   const UploadMultipleFiles = async () => {
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("category", category);
+    formData.append("category", subCategory);
     formData.append("subCategory", subCategory);
     formData.append("price", price);
-    formData.append("type", type);
+    formData.append("type", category);
     formData.append("title", title);
     for (let i = 0; i < multipleFiles.length; i++) {
       formData.append("files", multipleFiles[i]);
@@ -84,7 +89,6 @@ function AddProductAdmin() {
       for (let i of cat) {
         if (i.category == category) {
           setSub(i.subCategory);
-          console.log(category);
         }
       }
     }
@@ -93,7 +97,7 @@ function AddProductAdmin() {
   useEffect(() => {
     const Fun = async () => {
       try {
-        const res = await axios.post(`${Url}/product/next`, next);
+        const res = await axios.post(`${Url}/product/${next.category==="Все"?"next":"pro"}`, next);
         if (res.status === 200) {
           setProd([...prod, ...res.data]);
           setNext({ ...next, quantity: next.quantity + 1 });
@@ -124,6 +128,15 @@ function AddProductAdmin() {
       setNext({ ...next, quantity: 1 });
     }
   };
+
+// ###########################
+useEffect(() => {
+  if (location.state) {
+    setNext({ ...next, category: location.state.text, quantity: 1 });
+  }
+  setProd([]);
+}, [location.state]);
+ 
 
   const Send = async (e) => {
     e.preventDefault();

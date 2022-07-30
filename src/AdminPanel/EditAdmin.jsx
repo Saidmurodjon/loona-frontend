@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Url from "../config";
 import axios from "axios";
@@ -15,7 +15,8 @@ function EditAdmin() {
   const [type, setType] = useState(saved.category);
   const [title, setTitle] = useState(saved.category);
   const [files, setMultipleProgress] = useState(0);
-
+  const [subCategory, setSubCategory] = useState("");
+  const [sub, setSub] = useState([]);
   const MultipleFileChange = (e) => {
     setMultipleFiles(e.target.files);
     setMultipleProgress(0);
@@ -32,17 +33,60 @@ function EditAdmin() {
       throw error;
     }
   };
-
+  let cat = [
+    {
+      category: "Мебель",
+      subCategory: [
+        "Диваны",
+        "Кресло",
+        "Журнальный стол",
+        "Комод",
+        "Пуфы",
+        "Стеллажи",
+      ],
+    },
+    {
+      category: "Светильники",
+      subCategory: [
+        "Подвесной светильник",
+        "Подвесная люстра",
+        "Потолочный светильник",
+        "Торшеры",
+        "Настольные лампы",
+        "Бра",
+      ],
+    },
+    {
+      category: "Декор",
+      subCategory: [
+        "Картины",
+        "УФ-печать",
+        "Обои",
+        "Панно из акрила",
+        "Панно из металла",
+        "Скульптура",
+      ],
+    },
+  ];
   const Send = async (e) => {
     e.preventDefault();
   };
-
+  useEffect(() => {
+    function Foo() {
+      for (let i of cat) {
+        if (i.category == category) {
+          setSub(i.subCategory);
+        }
+      }
+    }
+    Foo();
+  }, [category]);
   const UploadMultipleFiles = async () => {
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("category", category);
+    formData.append("category", subCategory);
     formData.append("price", price);
-    formData.append("type", type);
+    formData.append("type", category);
     formData.append("title", title);
     for (let i = 0; i < multipleFiles.length; i++) {
       formData.append("files", multipleFiles[i]);
@@ -85,18 +129,23 @@ function EditAdmin() {
                           </div>
                         </div>
                         <div className="col-md-6">
-                          <div className="form-group formAdminAdd">
+                        <div className="form-group formAdminAdd">
                             {" "}
-                            <label className="labelADminProd">Type</label>
-                            <input
-                              type="text"
-                              name="Type"
+                            <label className="labelADminProd">Category</label>
+                            <select
+                              onChange={(e) => setCategory(e.target.value)}
+                              name="category"
                               className="form-control inputsAddPRoduct"
-                              placeholder="Type"
                               required="required"
-                              value={type}
-                              onChange={(e) => setType(e.target.value)}
-                            />
+                            >
+                              {cat.map((item, index) => {
+                                return (
+                                  <option value={item.category} key={index}>
+                                    {item.category}
+                                  </option>
+                                );
+                              })}
+                            </select>
                           </div>
                         </div>
                       </div>
@@ -111,58 +160,29 @@ function EditAdmin() {
                               className="form-control inputsAddPRoduct"
                               placeholder="Pirce"
                               required="required"
-                              value={price}
                               onChange={(e) => setPrice(e.target.value)}
-                            />{" "}
+                            />
                           </div>
                         </div>
                         <div className="col-md-6">
                           <div className="form-group formAdminAdd">
                             {" "}
-                            <label className="labelADminProd">Category</label>
+                            <label className="labelADminProd">
+                              SubCategory
+                            </label>
                             <select
-                              onChange={(e) => setCategory(e.target.value)}
+                              onChange={(e) => setSubCategory(e.target.value)}
                               name="category"
                               className="form-control inputsAddPRoduct"
                               required="required"
                             >
-                              <option value="">...</option>
-
-                              <optgroup label="Мэбэл">
-                                <option value="Диваны">Диваны</option>
-                                <option value="Кресло">Кресло</option>
-                                <option value="Журнальный стол">
-                                  Журнальный стол
-                                </option>
-                                <option value="Комод">Комод</option>
-                                <option value="Пуфы">Пуфы</option>
-                                <option value="Стеллажи">Стеллажи</option>
-                              </optgroup>
-                              <optgroup label="Светильники">
-                                <option value="Подвесной светильник">
-                                  Подвесной светильник
-                                </option>
-                                <option value="Потолочный светильник">
-                                  Потолочный светильник
-                                </option>
-                                <option value="Торшеры">Торшеры</option>
-                                <option value="Настольные лампы">
-                                  Настольные лампы
-                                </option>
-                                <option value="Бра">Бра</option>
-                              </optgroup>
-                              <optgroup label="Декор">
-                                <option value="Картины">Картины</option>
-                                <option value="УФ-печать">УФ-печать</option>
-                                <option value="Обои">Обои</option>
-                                <option value="Панно из акрила">
-                                  Панно из акрила
-                                </option>
-                                <option value="Панно из металла">
-                                  Панно из металла
-                                </option>
-                                <option value="Скульптура">Скульптура</option>
-                              </optgroup>
+                              {sub.map((item, index) => {
+                                return (
+                                  <option value={item} key={index}>
+                                    {item}
+                                  </option>
+                                );
+                              })}
                             </select>
                           </div>
                         </div>

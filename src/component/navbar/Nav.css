@@ -111,7 +111,7 @@ header {
     letter-spacing: 0;
     text-decoration: none;
     color: #222529;
-    padding: 45px 3% 45px 3%;
+    /* padding: 45px 3% 45px 3%; */
 }
 .nav-select{
     font-family: Poppins, sans-serif;
@@ -155,7 +155,9 @@ header {
 .logo {
     padding-top: 15px;
 }
-
+.nav-logo{
+  width: 200px;
+}
 
 
 .menu2 a {
@@ -199,7 +201,9 @@ header {
 .nav-img{
     width: 150px;
 }
-
+.pointer{
+cursor: pointer;
+}
 
 
 @media only screen and (max-width: 990px) {

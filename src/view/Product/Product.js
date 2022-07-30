@@ -2,37 +2,42 @@ import "./Product.css";
 import React, { useState, useEffect } from "react";
 import ModalProd from "./ModalProd";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Url from "../../config";
-function Product(text) {
+
+function Product() {
+  const location = useLocation();
   const [baza, setBaza] = useState([]);
   const [baz, setBaz] = useState([]);
-  // Token
-  const pro = sessionStorage.getItem("pro-text");
-  console.log(pro);
-  useEffect(() => {
-  }, [pro]);
-  useEffect(() => {
-    async function Demo() {
-      const res = await axios.get(`${Url}/product`);
-      setBaza(res.data);
-      setBaz(res.data);
-    }
-    Demo();
-  }, []);
+  const [prod, setProd] = useState([]);
 
-  const Filter = (a) => {
-    const nat = baz.filter((item) => {
-      if (item.category === a) {
-        return true;
+  const [next, setNext] = useState({
+    quantity: 1,
+    step: 50,
+    category: "Комод",
+  });
+  // Token
+  useEffect(() => {
+    if (location.state) {
+      setNext({ ...next, category: location.state.text, quantity: 1 });
+    }
+    setProd([]);
+  }, [location.state]);
+  useEffect(() => {
+    const Fun = async () => {
+      try {
+        const res = await axios.post(`${Url}/product/pro`, next);
+        if (res.status === 200) {
+          setProd([...prod, ...res.data]);
+          setNext({ ...next, quantity: next.quantity + 1 });
+        }
+      } catch (err) {
+        console.log(err);
       }
-    });
-    setBaza(nat);
-  };
-  console.log(pro);
-  const Full = () => {
-    setBaza((items) => [...baz]);
-  };
+    };
+    Fun();
+  }, [next]);
+
   // public_html/porto
   const [tempdata, setTempData] = useState([]);
   const [model, setModel] = useState(false);
@@ -49,94 +54,8 @@ function Product(text) {
   return (
     <div className="Product mt-5">
       <div className="container">
-        <div className="row mb-5 d-flex justify-content-between">
-          <div className="col-md-2">
-            <button className="butFilter" onClick={() => Full()}>
-              Все
-            </button>
-          </div>
-          <div className="col-md-2">
-            {/* <button className="butFilter" onClick={() => Filter("Мэбэл")}>
-              Мэбэл
-            </button> */}
-            <form action="">
-              <select
-                onChange={(e) => Filter(e.target.value)}
-                name="category"
-                className="form-control bg-dark text-white text-center"
-                required="required"
-              >
-                <optgroup label="Мэбэл">
-                  {/* <option defaultValue="Мэбэл">Мэбэл</option> */}
-                  <option value="Диваны">Диваны</option>
-                  <option value="Кресло">Кресло</option>
-                  <option value="Журнальный стол">Журнальный стол</option>
-                  <option value="Комод">Комод</option>
-                  <option value="Пуфы">Пуфы</option>
-                  <option value="Стеллажи">Стеллажи</option>
-                </optgroup>
-              </select>
-            </form>
-          </div>
-          <div className="col-md-2">
-            {/* <button className="butFilter" onClick={() => Filter("Люстра")}>
-              Люстра
-            </button> */}
-            <form action="">
-              <select
-                onChange={(e) => Filter(e.target.value)}
-                name="category"
-                className="form-control bg-dark text-white text-center"
-                required="required"
-              >
-                <optgroup label="Светильники">
-                  <option value="Подвесной светильник">
-                    Подвесной светильник
-                  </option>
-                  <option value="Потолочный светильник">
-                    Потолочный светильник
-                  </option>
-                  <option value="Торшеры">Торшеры</option>
-                  <option value="Настольные лампы">Настольные лампы</option>
-                  <option value="Бра">Бра</option>
-                </optgroup>
-              </select>
-            </form>
-          </div>
-          <div className="col-md-2">
-            {/* <button className="butFilter" onClick={() => Filter("Дэкор")}>
-              Дэкор
-            </button> */}
-
-            <form action="">
-              <select
-                onChange={(e) => Filter(e.target.value)}
-                name="category"
-                className="form-control bg-dark text-white text-center"
-                required="required"
-              >
-                <optgroup label="Декор">
-                  <option value="Картины">Картины</option>
-                  <option value="УФ-печать">УФ-печать</option>
-                  <option value="Обои">Обои</option>
-                  <option value="Панно из акрила">Панно из акрила</option>
-                  <option value="Панно из металла">Панно из металла</option>
-                  <option value="Скульптура">Скульптура</option>
-                </optgroup>
-              </select>
-            </form>
-          </div>
-          <div className="col-md-2">
-            <button
-              className="butFilter"
-              onClick={() => Filter("Элэмэнтыдэкора")}
-            >
-              Элэмэнты дэкора
-            </button>
-          </div>
-        </div>
         <div className="row">
-          {baza.map((item, index) => {
+          {prod.map((item, index) => {
             return (
               <div className="col-12 col-md-3" key={index}>
                 <div className="card cardaaa">
@@ -168,7 +87,7 @@ function Product(text) {
                     <h6 className="kartaH6">{item.category}</h6>
                   </div>
                   <div className="prname">{item.name}</div>
-                  <h5>UZS {item.price}.00</h5>
+                  <h5>UZS {new Intl.NumberFormat().format(item.price)}.00</h5>
                 </div>
               </div>
             );

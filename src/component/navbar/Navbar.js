@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import { useCart } from "react-use-cart";
 import { useNavigate } from "react-router-dom";
-
+import photo from '../../assets/logo.png'
 import "./Nav.css";
 
 const Navbar = () => {
@@ -29,8 +29,7 @@ const Navbar = () => {
       navigate("/about");
     } else {
       if (text.length > 0) {
-        navigate("/product");
-        sessionStorage.setItem(`pro-text`, text);
+        navigate("/product",{state:{text:text}});
       }
     }
   }
@@ -42,7 +41,7 @@ const Navbar = () => {
         </div>
         <div className="col-md-4 items-navbar">
           {" "}
-          <ul className="menus">
+          <ul className="menus pointer mt-5">
             {menuItems.map((menu, index) => {
               const depthLevel = 0;
               return (
@@ -58,9 +57,10 @@ const Navbar = () => {
         </div>
         <div className="logo col-md-3 text-center">
           <img
-            className="pt-3"
-            src="https://www.portotheme.com/wordpress/porto/elementor/shop29/wp-content/themes/porto/images/logo/logo_ecommerce_black.png"
-            alt=""
+          onClick={()=>navigate('/')}
+            className="pt-3 nav-logo pointer"
+            src={photo}
+            alt="logo"
           />
         </div>
         <div className="admin col-md-4 d-flex justify-content-end">

@@ -1,7 +1,7 @@
 export const menuItems = [
-  { title: "Дома" },
+  { title: "ДОМА" },
   {
-    title: "Продукты",
+    title: "ПРОДУКТЫ",
     submenu: [
       {
         title: "Мебель",
@@ -74,6 +74,6 @@ export const menuItems = [
       },
     ],
   },
-  { title: "Контакт" },
-  { title: "О нас" },
+  { title: "КОНТАКТ" },
+  { title: "О НАС" },
 ];

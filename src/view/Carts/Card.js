@@ -50,7 +50,7 @@ function Card() {
   if (isEmpty)
     return (
       <div className="mt-5">
-        <h5 className="d-inline m-5 ">Karta bosh :</h5>
+        <h5 className="d-inline m-5 ">КАРТА ПУСТА :</h5>
       </div>
     );
   return (
@@ -145,7 +145,7 @@ function Card() {
                                           {new Intl.NumberFormat().format(
                                             item.price
                                           )}{" "}
-                                          UZS{" "}
+                                          УЗС{" "}
                                         </span>
                                       </div>
                                     </div>
@@ -175,7 +175,7 @@ function Card() {
                     <span className="text2"> Общее сумма </span>
                     <span className="price">
                       {" "}
-                      {new Intl.NumberFormat().format(cartTotal)} UZS{" "}
+                      {new Intl.NumberFormat().format(cartTotal)} УЗС{" "}
                     </span>
                   </div>
                 </div>

@@ -7,26 +7,57 @@ import Url from "../../config";
 
 function Product() {
   const location = useLocation();
-  const [baza, setBaza] = useState([]);
-  const [baz, setBaz] = useState([]);
   const [prod, setProd] = useState([]);
 
   const [next, setNext] = useState({
     quantity: 1,
     step: 50,
-    category: "Комод",
+    subCategory: "ПРОДУКТЫ",
+    category: "ПРОДУКТЫ",
+    all: true,
   });
   // Token
   useEffect(() => {
     if (location.state) {
-      setNext({ ...next, category: location.state.text, quantity: 1 });
+      if (
+        location.state.text === "Мебель" ||
+        location.state.text === "Светильники" ||
+        location.state.text === "Декор"
+      ) {
+        setNext({
+          ...next,
+          all: false,
+          category: location.state.text,
+          subCategory: "",
+          quantity: 1,
+        });
+      } else if (location.state.text === "ПРОДУКТЫ") {
+        setNext({
+          ...next,
+          all: true,
+          category: "",
+          subCategory: "",
+          quantity: 1,
+        });
+      } else {
+        setNext({
+          ...next,
+          all: false,
+          category: "",
+          subCategory: location.state.text,
+          quantity: 1,
+        });
+      }
     }
     setProd([]);
   }, [location.state]);
   useEffect(() => {
     const Fun = async () => {
       try {
-        const res = await axios.post(`${Url}/product/pro`, next);
+        const res = await axios.post(
+          `${Url}/product/${next.all === true ? "next" : "pro"}`,
+          next
+        );
         if (res.status === 200) {
           setProd([...prod, ...res.data]);
           setNext({ ...next, quantity: next.quantity + 1 });
@@ -41,8 +72,8 @@ function Product() {
   // public_html/porto
   const [tempdata, setTempData] = useState([]);
   const [model, setModel] = useState(false);
-  const View = (files, name, price, title, prod) => {
-    let tempData = [files, name, price, title, prod];
+  const View = (files, name, price, title, prod, category) => {
+    let tempData = [files, name, price, title, prod, category];
     setTempData((item) => [...tempData]);
 
     return setModel(true);
@@ -74,12 +105,13 @@ function Product() {
                           item.name,
                           item.price,
                           item.title,
-                          item
+                          item,
+                          item.category
                         )
                       }
                       className="quickview"
                     >
-                      QUICK VIEW
+                      БЫСТРЫЙ ПРОСМОТР
                     </button>
                   </div>
                   <div className="title">
@@ -87,7 +119,7 @@ function Product() {
                     <h6 className="kartaH6">{item.category}</h6>
                   </div>
                   <div className="prname">{item.name}</div>
-                  <h5>UZS {new Intl.NumberFormat().format(item.price)}.00</h5>
+                  <h5>УЗС {new Intl.NumberFormat().format(item.price)}.00</h5>
                 </div>
               </div>
             );
@@ -101,6 +133,7 @@ function Product() {
           price={tempdata[2]}
           title={tempdata[3]}
           prod={tempdata[4]}
+          category={tempdata[5]}
           hide={() => setModel(false)}
         />
       ) : (

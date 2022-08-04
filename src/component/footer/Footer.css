@@ -6,15 +6,47 @@
 .fot-img {
     padding: 5% 0 0 0;
 }
+
 .fot-img2 {
-    width: 200px;
+    width: 150px;
 }
+
 .fot-img h2 {
     padding-left: 15%;
     color: #606da6;
 }
+
+
+.ijtimoiy {
+    color: #606da6;
+    text-decoration: none;
+    margin: 10px 0!important;
+    display: block;
+}
+
+
+
 @media only screen and (max-width: 760px) {
     .fot-img2 {
         width: 120px;
+    }
+
+    .engtepa {
+        font-size: 10px;
+    }
+
+    .homiylar {
+        padding: 0;
+    }
+
+    .right-big {
+        margin-top: 20px;
+        width: 370px;
+        margin-left: 10px;
+        padding: 10px;
+    }
+
+    .homiylar img {
+        margin: 0 25px !important;
     }
 }

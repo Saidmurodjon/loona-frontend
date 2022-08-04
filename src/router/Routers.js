@@ -18,7 +18,7 @@ import EditAdmin from '../AdminPanel/EditAdmin'
 function Routers() {
     return (
         <>
-            <div className="container">
+           
                 <CartProvider>
                     <Navbar />
 
@@ -40,7 +40,7 @@ function Routers() {
 
                     <Footer />
                 </CartProvider>
-            </div>
+            
         </>
     )
 }

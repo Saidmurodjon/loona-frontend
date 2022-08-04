@@ -7,8 +7,7 @@ import {useLocation } from "react-router-dom";
 
 import Url from "../config";
 function AddProductAdmin() {
-  const location = useLocation();
-
+  const location = useLocation()
   let cat = [
     {
       category: "Мебель",
@@ -19,7 +18,7 @@ function AddProductAdmin() {
         "Комод",
         "Пуфы",
         "Стеллажи",
-      ],
+      ]
     },
     {
       category: "Светильники",
@@ -30,7 +29,7 @@ function AddProductAdmin() {
         "Торшеры",
         "Настольные лампы",
         "Бра",
-      ],
+      ]
     },
     {
       category: "Декор",
@@ -41,14 +40,13 @@ function AddProductAdmin() {
         "Панно из акрила",
         "Панно из металла",
         "Скульптура",
-      ],
+      ]
     },
   ];
   const [multipleFiles, setMultipleFiles] = useState("");
   const [name, setName] = useState("");
   const [category, setCategory] = useState("Мебель");
   const [price, setPrice] = useState("");
-  const [type, setType] = useState("");
   const [title, setTitle] = useState("");
   const [files, setMultipleProgress] = useState(0);
   const [prod, setProd] = useState([]);
@@ -58,7 +56,7 @@ function AddProductAdmin() {
     step: 50,
     category: "Все",
   });
-  const [subCategory, setSubCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("Диваны");
   const [sub, setSub] = useState([]);
   const MultipleFileChange = (e) => {
     setMultipleFiles(e.target.files);
@@ -68,7 +66,7 @@ function AddProductAdmin() {
   const UploadMultipleFiles = async () => {
     const formData = new FormData();
     formData.append("name", name);
-    formData.append("category", subCategory);
+    formData.append("category", category);
     formData.append("subCategory", subCategory);
     formData.append("price", price);
     formData.append("type", category);
@@ -160,7 +158,7 @@ useEffect(() => {
                       <div className="row">
                         <div className="col-md-6">
                           <div className="form-group formAdminAdd">
-                            {" "}
+                            
                             <label className="labelADminProd">Name</label>
                             <input
                               type="text"
@@ -174,7 +172,7 @@ useEffect(() => {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group formAdminAdd">
-                            {" "}
+                            
                             <label className="labelADminProd">Category</label>
                             <select
                               onChange={(e) => setCategory(e.target.value)}
@@ -196,7 +194,7 @@ useEffect(() => {
                       <div className="row">
                         <div className="col-md-6">
                           <div className="form-group formAdminAdd">
-                            {" "}
+                            
                             <label className="labelADminProd">Price</label>
                             <input
                               type="text"
@@ -210,13 +208,13 @@ useEffect(() => {
                         </div>
                         <div className="col-md-6">
                           <div className="form-group formAdminAdd">
-                            {" "}
+                            
                             <label className="labelADminProd">
                               SubCategory
                             </label>
                             <select
                               onChange={(e) => setSubCategory(e.target.value)}
-                              name="category"
+                              name="subCategory"
                               className="form-control inputsAddPRoduct"
                               required="required"
                             >
@@ -234,7 +232,7 @@ useEffect(() => {
                       <div className="row">
                         <div className="col-md-12">
                           <div className="form-group formAdminAddTExtarea">
-                            {" "}
+                            
                             <label className="labelADminProd">Title</label>
                             <textarea
                               name="title"
@@ -261,7 +259,7 @@ useEffect(() => {
                             className="btn btn-success btn-send pt-2 btn-block submitAddAdmin"
                             onClick={() => UploadMultipleFiles()}
                             value="Submit"
-                          />{" "}
+                          />
                         </div>
                       </div>
                     </div>

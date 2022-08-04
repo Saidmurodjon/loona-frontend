@@ -14,29 +14,19 @@ function Itemcard(props) {
       <div className="mod">
         <div className="row">
           <button
-            type="button"
+            type="button" 
             className="btn-close kloz"
             onClick={props.hide}
           ></button>
-          <div className="col-12 col-md-6">
-            <div className="row">
-              {file?file.map((e) => (
-                <div className="col-4">
-                  <img
-                    className="img-fluid"
-                    src={`${Url}/${e.filePath}`}
-                    alt={e.fileName}
-                  />
-                </div>
-              )):"surat mavjud emas"}
+          <div className='col-12 col-md-6'>
+                <img className='img img-fluid w-100 h-100'  src={props.img} alt={props.img} />
             </div>
-          </div>
           <div className="col-12 col-md-6 orta">
             <h1>{props.name}</h1>
-            <h2>{new Intl.NumberFormat().format(props.price)}.00 UZS</h2>
+            <h2>{new Intl.NumberFormat().format(props.price)}.00 УЗС</h2>
             <p>{props.title}</p>
             <h6>
-              <span className="sku-wrapper"> CATEGORIES:</span> OFFICE, OUTDOOR
+              <span className="sku-wrapper"> КАТЕГОРИИ:</span> {props.category}
             </h6>
             <hr />
             <input
@@ -64,7 +54,7 @@ function Itemcard(props) {
               }}
             />
             <button className="addToCart" onClick={() => addItem(props.item)}>
-              Add to cart
+            ДОБАВИТЬ В КОРЗИНУ
             </button>
             <hr />
           </div>

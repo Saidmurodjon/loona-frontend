@@ -11,8 +11,9 @@ function ModalProd(props) {
       hide={props.hide}
       name={props.name}
       price={props.price}
-      type={props.type}
+      category={props.category}
       item={props.prod}
+
     />
   );
 }

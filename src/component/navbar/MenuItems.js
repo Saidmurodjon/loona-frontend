@@ -43,7 +43,7 @@ const [text,setText]=useState("")
             aria-haspopup="menu"
             className="mt-2 ms-2 pointer"
             aria-expanded={dropdown ? "true" : "false"}
-            onClick={() => {setDropdown((prev) => !prev)}}
+            onClick={() => {setDropdown((prev) => !prev);navfunc(items.title)}}
           >
             <b>{items.title}</b>
             {depthLevel > 0 ? <span>&raquo;</span> : <span className="arrow" />}

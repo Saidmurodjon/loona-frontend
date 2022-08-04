@@ -15,27 +15,27 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { items } = useCart();
   const [tog, setTog] = useState(true);
-  const [pro, setPro] = useState("");
   const Toggle = () => {
     setTog(!tog);
   };
 
   function NavbarFunction(text) {
-    if (text === "Дома") {
+    console.log(text);
+    if (text === "ДОМА") {
       navigate("/");
-    } else if (text === "Контакт") {
+    } else if (text === "КОНТАКТ") {
       navigate("/contact");
-    } else if (text === "О нас") {
+    } else if (text === "О НАС") {
       navigate("/about");
-    } else {
+    }else {
       if (text.length > 0) {
         navigate("/product", { state: { text: text } });
-      }
+      } 
     }
   }
   return (
-    <nav>
-      <div className="row justify-content-between align-items-center">
+    <nav className="container">
+      <div className="row justify-content-between align-items-center" >
         <div className="col-md-4 foo d-lg-none">
           <GiHamburgerMenu onClick={() => Toggle()} />
         </div>

@@ -80,11 +80,11 @@ function Contact() {
                 <Map
                   className="maps1"
                   defaultState={{
-                    center: [41.260020, 69.232809],
+                    center: [41.2725809, 69.2391733],
                     zoom: 16,
                   }}
                 >
-                  <Placemark geometry={[41.260020, 69.232809]} />
+                  <Placemark geometry={[41.2725809, 69.2391733]} />
                 </Map>
               </div>
             </YMaps>

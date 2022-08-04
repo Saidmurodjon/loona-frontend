@@ -16,7 +16,7 @@ function LoginPage() {
     // let res = await axios.post(`${Url}/admin`, mon);
     // console.log(res);
 
-    if (mon.login === "porto" && mon.password === "porto2022@uz") {
+    if (mon.login === "loona" && mon.password === "loona2022@uz") {
       navigate("/addProduct");
     } else {
       alert("Login yoki Parol xato");

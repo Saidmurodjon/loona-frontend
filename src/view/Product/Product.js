@@ -4,7 +4,10 @@ import ModalProd from "./ModalProd";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
 import Url from "../../config";
-
+import { menuItems } from "../../menuItems";
+import p1 from "../../assets/22.png";
+import p2 from "../../assets/11.png";
+import p3 from "../../assets/33.png";
 function Product() {
   const location = useLocation();
   const [prod, setProd] = useState([]);
@@ -15,6 +18,7 @@ function Product() {
     subCategory: "ПРОДУКТЫ",
     category: "ПРОДУКТЫ",
     all: true,
+    fonCategory: "",
   });
   // Token
   useEffect(() => {
@@ -28,6 +32,7 @@ function Product() {
           ...next,
           all: false,
           category: location.state.text,
+          fonCategory: location.state.text,
           subCategory: "",
           quantity: 1,
         });
@@ -51,6 +56,18 @@ function Product() {
     }
     setProd([]);
   }, [location.state]);
+  useEffect(() => {
+    menuItems[1].submenu.map((i) => {
+      i.submenu.map((e) => {
+        if (e.title === location.state.text && next.fonCategory !== i.title) {
+          setNext({
+            ...next,
+            fonCategory: i.title,
+          });
+        }
+      });
+    });
+  }, [next.subCategory]);
   useEffect(() => {
     const Fun = async () => {
       try {
@@ -85,6 +102,24 @@ function Product() {
   return (
     <div className="Product mt-5">
       <div className="container">
+        <div className="row m-2">
+          <div
+            className="row mt-5 fon"
+            style={{
+              height: "250px",
+              backgroundImage: `url(${
+                next.fonCategory === "Мебель"
+                  ? p1
+                  : next.fonCategory === "Светильники"
+                  ? p2
+                  : next.fonCategory === "Декор"
+                  ? p3
+                  : p1
+              })`,
+            }}
+          ></div>
+        </div>
+
         <div className="row">
           {prod.map((item, index) => {
             return (
@@ -126,6 +161,7 @@ function Product() {
           })}
         </div>
       </div>
+
       {model === true ? (
         <ModalProd
           files={tempdata[0]}

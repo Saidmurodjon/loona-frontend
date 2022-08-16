@@ -20,7 +20,6 @@ const Navbar = () => {
   };
 
   function NavbarFunction(text) {
-    console.log(text);
     if (text === "ДОМА") {
       navigate("/");
     } else if (text === "КОНТАКТ") {

@@ -4,6 +4,15 @@
   border: none !important;
   margin: auto;
 }
+.m-q{
+  width: 100%;
+  margin-top: -3% !important;
+  
+  
+}
+.fon{
+  margin-top: 0.5% !important;
+}
 .cardImage {
   width: 100%;
   position: relative;
@@ -81,5 +90,6 @@
 @media (max-width: 480px) {
   .fon {
     height: max-content;
+    
   }
 }

@@ -11,7 +11,7 @@ import p3 from "../../assets/33.png";
 function Product() {
   const location = useLocation();
   const [prod, setProd] = useState([]);
-
+  
   const [next, setNext] = useState({
     quantity: 1,
     step: 50,
@@ -103,6 +103,9 @@ function Product() {
     <div className="Product mt-5">
       <div className="container">
         <div className="row m-2">
+          <p className="engtepa mt-3 m-q">
+            Получите 10% СКИДКУ на LOONA — покупайте прямо сейчас!
+          </p>
           <div
             className="row mt-5 fon"
             style={{
@@ -127,6 +130,7 @@ function Product() {
                 <div className="card cardaaa">
                   <div className="cardImage">
                     <Link to="/proCard">
+                    
                       <img
                         onClick={() => getDanniy(item)}
                         src={`${Url}/${item.files[0].filePath}`}

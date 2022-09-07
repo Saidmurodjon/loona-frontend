@@ -11,10 +11,12 @@ import Url from "../../config";
 import Carousel from "carousel-react-rcdev";
 import axios from "axios";
 import "./Home.css";
+
 function Home() {
   const [prod, setProd] = useState([]);
   const [prod2, setProd2] = useState([]);
   const [fill, setFill] = useState([]);
+  const [fonCategory, setFonCategory] = useState("");
   useEffect(() => {
     async function Demo() {
       let res = await axios(`${Url}/product/sendHome`);
@@ -39,6 +41,7 @@ function Home() {
   };
 
   const Filter = (category) => {
+    setFonCategory(category);
     if (category == "Мебель") {
       setProd(fill[0].slice(0, 4));
       setProd2(fill[0].slice(4, 12));
@@ -160,6 +163,7 @@ function Home() {
               <p>Декор</p>
             </div>
           </div>
+ 
           <div className="row">
             {prod.map((item, index) => {
               return (
@@ -328,11 +332,11 @@ function Home() {
           />
           <img
             className="mx-5 yanassss"
-            id="lustr"
             src="./home/5.png"
             alt="imagem"
             title="imagem"
           />
+          
         </Carousel>
       </div>
     </>

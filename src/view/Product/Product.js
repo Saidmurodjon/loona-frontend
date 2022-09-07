@@ -59,7 +59,7 @@ function Product() {
   useEffect(() => {
     menuItems[1].submenu.map((i) => {
       i.submenu.map((e) => {
-        if (e.title === location.state.text && next.fonCategory !== i.title) {
+        if (location.state && e.title === location.state.text && next.fonCategory !== i.title) {
           setNext({
             ...next,
             fonCategory: i.title,

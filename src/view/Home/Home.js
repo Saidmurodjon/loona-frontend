@@ -163,7 +163,7 @@ function Home() {
               <p>Декор</p>
             </div>
           </div>
- 
+
           <div className="row">
             {prod.map((item, index) => {
               return (
@@ -305,39 +305,40 @@ function Home() {
       </div>
 
       <div className="homiylar">
-        <Carousel>
-          <img
-            className="mx-5 yanassss"
-            src="./home/1.png"
-            alt="imagem"
-            title="imagem"
-          />
-          <img
-            className="mx-5 yanassss"
-            src="./home/2.png"
-            alt="imagem"
-            title="imagem"
-          />
-          <img
-            className="mx-5 yanassss"
-            src="./home/3.png"
-            alt="imagem"
-            title="imagem"
-          />
-          <img
-            className="mx-5 yanassss"
-            src="./home/4.png"
-            alt="imagem"
-            title="imagem"
-          />
-          <img
-            className="mx-5 yanassss"
-            src="./home/5.png"
-            alt="imagem"
-            title="imagem"
-          />
-          
-        </Carousel>
+        <div className="container">
+          <Carousel>
+            <img
+              className="mx-5 yanassss"
+              src="./assets/partner/1.png"
+              alt="imagem"
+              title="imagem"
+            />
+            <img
+              className="mx-5 yanassss"
+              src="./assets/partner/2.png"
+              alt="imagem"
+              title="imagem"
+            />
+            <img
+              className="mx-5 yanassss"
+              src="./assets/partner/3.png"
+              alt="imagem"
+              title="imagem"
+            />
+            <img
+              className="mx-5 yanassss"
+              src="./assets/partner/4.png"
+              alt="imagem"
+              title="imagem"
+            />
+            <img
+              className="mx-5 yanassss"
+              src="./assets/partner/5.png"
+              alt="imagem"
+              title="imagem"
+            />
+          </Carousel>
+        </div>
       </div>
     </>
   );

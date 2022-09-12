@@ -1,0 +1,95 @@
+.cardaaa {
+  width: 300px;
+  min-height: 200px;
+  border: none !important;
+  margin: auto;
+}
+.m-q{
+  width: 100%;
+  margin-top: -3% !important;
+  
+  
+}
+.fon{
+  margin-top: 0.5% !important;
+}
+.cardImage {
+  width: 100%;
+  position: relative;
+}
+.quickview {
+  position: absolute;
+  bottom: 0;
+  height: 27%;
+  background-color: #606da6;
+  width: 100%;
+  text-align: center;
+  opacity: 0.8;
+  color: white;
+  padding-bottom: 5% !important;
+  display: none;
+  border: none;
+}
+.cardImage:hover .quickview {
+  display: block;
+  height: 27% !important;
+  padding-top: 3%;
+}
+.cardImage:hover .quickview:hover {
+  opacity: 1;
+}
+
+.cardImage img {
+  width: 100%;
+  height: 300px;
+}
+
+.cardaaa .kartaH6 {
+  font-size: 10px !important;
+  color: #777777 !important;
+  margin-top: 20px !important;
+  margin-bottom: 5px !important;
+}
+.card .kartaH6:hover {
+  color: #606da6 !important;
+}
+.card .prname {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.45rem;
+  color: black !important;
+  margin-top: 10px;
+}
+.card .prname:hover {
+  color: #606da6 !important;
+}
+
+.butFilter {
+  height: 35px !important;
+  background-color: #222 !important;
+  border-radius: 0.25rem !important;
+  border: none;
+  color: white;
+  padding: 5px 15px;
+  width: 200px;
+}
+
+.fon {
+  height: 270px !important;
+  background-repeat: no-repeat;
+  background-position: inherit;
+  background-size: cover;
+  color: white;
+  padding: 5% 7% 3% 7%;
+  margin-bottom: 5%;
+  width: 100%;
+  margin-left: 0px;
+}
+@media (max-width: 480px) {
+  .fon {
+    height: max-content;
+    
+  }
+}
